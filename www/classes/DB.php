@@ -1,3 +1,4 @@
+
 <?php
 
 /**
@@ -12,7 +13,7 @@ class DB {
     $link =   mysqli_connect('localhost', 'olvit', '34vit','test');
        // mysql_select_db('test');
     }
-    public function query($sql, $class = 'stdClass') {
+    public function queryAll($sql, $class = 'stdClass') {
 global $link;
     $res = mysqli_query($link, $sql);
         if (false === $res) {
@@ -24,5 +25,9 @@ global $link;
             $ret[] = $row;
         }
         return $ret;
+    }
+
+    public function queryOne($sql, $class = 'stdClass') {
+        return $this->queryAll($sql, $class)[0];
     }
 }
